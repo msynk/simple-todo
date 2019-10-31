@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Todo</title>
+    <link rel="stylesheet" href="index.css"/>
 </head>
 
 <body>
@@ -14,44 +15,17 @@
         <button>Add</button>
     </form>
 
-    <ul id="todoList" class="todo-list"></ul>
+    <ol id="todoList" class="todo-list"></ol>
 
     <div id="filterButtons">
         <button value="0">All</button>
         <button value="1">Active</button>
-        <button value="2">Competed</button>
+        <button value="2">Completed</button>
     </div>
 
-    <style>
-        .todo-list {
-            list-style-type: none;
-            height: 200px;
-            overflow: auto;
-        }
-
-        .todo-li {
-            padding: 5px;
-            color: black;
-            width: 200px;
-        }
-
-        .todo-li.completed {
-            text-decoration: line-through;
-            color: gray;
-        }
-
-        .todo-title {
-            font-size: 20px;
-        }
-
-        .todo-btn-complete {
-            float: right;
-        }
-    </style>
-
-    <script src="index.js"></script>
     <script src="controller.js"></script>
     <script src="view.js"></script>
+    <script src="index.js"></script>
 </body>
 
 </html>

@@ -4,31 +4,27 @@
         render: render
     };
 
-    var _elements, _listeners = {};
+    var _elements = {},
+        _listeners = {};
 
-    function init(listeners) {
-        _listeners.add = listeners[0];
-        _listeners.complete = listeners[1];
-        _listeners.filter = listeners[2];
+    function init(addTodo, completeTodo, filterTodos) {
+        _listeners.add = addTodo;
+        _listeners.complete = completeTodo;
+        _listeners.filter = filterTodos;
 
         var el = document.getElementById.bind(document);
-        _elements = {
-            form: el('todoForm'),
-            input: el('todoInput'),
-            list: el('todoList'),
-            filters: el('filterButtons')
-        };
-
-        _elements.form.addEventListener('submit', submitForm);
-        _elements.filters.addEventListener('click', filter);
-
-        _elements.input.focus();
+        ['todoForm', 'todoInput', 'todoList', 'filterButtons'].forEach(function (e) {
+            _elements[e] = el(e);
+        });
+        _elements.todoForm.addEventListener('submit', submitForm);
+        _elements.filterButtons.addEventListener('click', filter);
+        _elements.todoInput.focus();
     }
 
     function render(todos) {
-        _elements.list.innerHTML = '';
+        _elements.todoList.innerHTML = '';
         (todos || []).forEach(function (t) {
-            _elements.list.prepend(createLi(t));
+            _elements.todoList.prepend(createLi(t));
         });
     }
 
@@ -36,12 +32,12 @@
 
     function submitForm(e) {
         e.preventDefault();
-        var value = _elements.input.value;
+        var value = _elements.todoInput.value;
         if (!value) return;
 
         _listeners.add(value);
-        _elements.input.value = '';
-        _elements.input.focus();
+        _elements.todoInput.value = '';
+        _elements.todoInput.focus();
     }
 
     function filter(e) {
@@ -49,10 +45,10 @@
     }
 
     function createLi(todo) {
-        var cr = document.createElement.bind(document),
-            li = cr('li'),
-            titleSpan = cr('span'),
-            completeButton = cr('button');
+        var ce = document.createElement.bind(document),
+            li = ce('li'),
+            titleSpan = ce('span'),
+            completeButton = ce('button');
 
         li.append(titleSpan);
         li.append(completeButton);
